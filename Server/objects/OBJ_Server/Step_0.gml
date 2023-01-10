@@ -29,7 +29,7 @@ if(console_work == undefined) {
                             ]);
                         }
                         else {
-                            server = network_create_server_raw(server_type, server_port, server_max_clients);
+                            server = network_create_server(server_type, server_port, server_max_clients);
                             _console_output = string_ext("{0}", [
                                 "Start Server..."
                             ]);

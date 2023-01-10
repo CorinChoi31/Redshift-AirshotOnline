@@ -1,0 +1,1 @@
+global.__font = font_add_sprite_ext(SPR_Font, "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{:}~", true, 4);
