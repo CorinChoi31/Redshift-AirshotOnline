@@ -23,3 +23,5 @@ console_history = array_create(0);
 
 global.game = instance_create_layer(0, 0, "GameForeground", OBJ_Game);
 game = global.game;
+
+keyboard_string = "server start";

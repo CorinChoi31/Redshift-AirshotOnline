@@ -1,0 +1,2 @@
+game = noone;
+projectile = undefined;

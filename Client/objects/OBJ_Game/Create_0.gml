@@ -844,5 +844,14 @@ server_connecting = 0;
 server = -1;
 
 
+time = 0;
+
+player_list = [];
+
+projectile_list = [];
+projectile_id = 0;
+
 user_id = random_range(1, 10000);
 show_debug_message(user_id);
+
+player = -1;

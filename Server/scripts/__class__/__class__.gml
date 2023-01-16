@@ -15,14 +15,14 @@ function Input(
     _input_reload=false
     ) constructor {
     
-    input_mouse_x = _input_mouse_x;
-    input_mouse_y = _input_mouse_y;
-    input_move_up = _input_move_up;
-    input_move_left = _input_move_left;
-    input_move_down = _input_move_down;
-    input_move_right = _input_move_right;
-    input_fire = _input_fire;
-    input_reload = _input_reload;
+    mo_x = _input_mouse_x;
+    mo_y = _input_mouse_y;
+    move_up = _input_move_up;
+    move_left = _input_move_left;
+    move_down = _input_move_down;
+    move_right = _input_move_right;
+    fire = _input_fire;
+    reload = _input_reload;
 }
 
 function Unit(
@@ -86,12 +86,12 @@ function Weapon(
     
     fireable = true;
     
-    cool = _cool; // 모든 공격 주기 종료 후 카운트
+    cool = 0; // 모든 공격 주기 종료 후 카운트
     cool_max = _cool;
     amount = _amount; // 동시 발사
-    period = _period; // 공격 횟수
+    period = 0; // 공격 횟수
     period_max = _period;
-    interval = _interval; // 공격 간격
+    interval = 0; // 공격 간격
     interval_max = _interval;
     angle = _angle;
     
@@ -145,11 +145,15 @@ function UnitEffect() constructor {
     
 }
 
-function Projectiles(_object, _player, _id, _damage, _duration, _duration_max, _speed, _direction, _particle) constructor {
+function Projectiles(_object, _player, _id, _x, _y, _damage, _duration, _duration_max, _speed, _direction, _particle) constructor {
     object = _object;
     player = _player;
     
     id = _id;
+    
+    x = _x;
+    y = _y;
+    
     damage = _damage;
 
     duration = _duration;

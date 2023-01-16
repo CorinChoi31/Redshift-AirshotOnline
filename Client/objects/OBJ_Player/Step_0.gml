@@ -1,12 +1,14 @@
 var _delta_time = global.__time;
 
-if(unit.player == -1) {
-    unit.input = new Input(
-        mouse_x, mouse_y,
-        keyboard_check(ord("W")), keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(ord("D")),
-        mouse_check_button(mb_left),
-        keyboard_check(ord("R"))
-    );
+if(game != noone) {
+    if(unit.player == game.player_index) {
+        unit.input = new Input(
+            mouse_x, mouse_y,
+            keyboard_check(ord("W")), keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(ord("D")),
+            mouse_check_button(mb_left),
+            keyboard_check(ord("R"))
+        );
+    }
 }
 
 var _input = unit.input;
@@ -107,12 +109,12 @@ if(unit.weapon.fireable) {
             unit.weapon.period -= 1;
             repeat(min(unit.weapon.amount)) {
                 
+                /*
                 var _instance = instance_create_layer(x, y, "Game", unit.weapon.projectile.object);
                     _instance.projectile = new Projectiles(
                         object_get_name(unit.weapon.projectile.object),
                         unit.player,
                         global.game.projectile_id++,
-                        x, y,
                         unit.weapon.projectile.damage,
                         unit.weapon.projectile.duration,
                         unit.weapon.projectile.duration,
@@ -120,6 +122,7 @@ if(unit.weapon.fireable) {
                         point_direction(x, y, _mouse_x, _mouse_y) + random_range(-unit.weapon.angle, unit.weapon.angle) * 0.5,
                         unit.weapon.projectile.particle
                     );
+                */
                 
                 unit.weapon.magazine.amount -= 1;
                 if(unit.weapon.magazine.amount <= 0) {

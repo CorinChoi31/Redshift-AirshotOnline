@@ -11,7 +11,17 @@ switch(_type) {
        
         break;
     case network_type_disconnect:
-        
+        var _find = -1;
+        repeat(array_length(server_client_list)) {
+            
+            if(_id == server_client_list[_i].client_id) {
+                _find = _i;
+            }
+            _i += 1;
+        }
+        if(_find != -1) {
+            server_client_list[_find].client_id = undefined;
+        }
         break;
     case network_type_data:
         var _buffer = async_load[? "buffer"];
@@ -29,7 +39,7 @@ switch(_type) {
                 var _uid = buffer_read(_buffer, buffer_string);
                 show_debug_message(_uid);
                 repeat(array_length(server_client_list)) {
-                    if(_uid == server_client_list[_i]) {
+                    if(_uid == server_client_list[_i].user_id) {
                         _find = _i;
                     }
                     _i += 1;
@@ -37,6 +47,10 @@ switch(_type) {
                 if(_find == -1) {
                     array_push(server_client_list, new Client(_id, _ip, _uid));
                     _find = array_length(server_client_list)-1;
+                }
+                else {
+                    server_client_list[_find].client_id = _id;
+                    server_client_list[_find].client_ip = _ip;
                 }
         
                 buffer_seek(server_packet, buffer_seek_start, 0);

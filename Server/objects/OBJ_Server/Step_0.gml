@@ -66,7 +66,5 @@ if(console_work == undefined) {
     }
 }
 else {
-    if(instance_exists(global.game)) {
-        global.game
-    }
+    
 }
