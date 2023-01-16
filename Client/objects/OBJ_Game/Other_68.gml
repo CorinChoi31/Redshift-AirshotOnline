@@ -39,7 +39,7 @@ switch(_type) {
             default:
                 break;
             case NET_EVENT.CONNECT:
-                player_index = buffer_read(_buffer, buffer_u8);
+                player = buffer_read(_buffer, buffer_u8);
                 break;
             case NET_EVENT.GAME_STAGE:
                 
@@ -120,7 +120,6 @@ switch(_type) {
                     array_push(projectile_list, _instance);
                     _i += 1;
                 }
-                //;
                 break;
         }
         break;

@@ -1,7 +1,7 @@
 var _delta_time = global.__time;
 
 if(game != noone) {
-    if(unit.player == game.player_index) {
+    if(unit.player == game.player) {
         unit.input = new Input(
             mouse_x, mouse_y,
             keyboard_check(ord("W")), keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(ord("D")),

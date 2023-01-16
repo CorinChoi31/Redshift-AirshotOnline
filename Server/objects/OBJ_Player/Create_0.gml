@@ -1,3 +1,3 @@
-unit = json_parse(json_stringify(global.__unit[0]));
+unit = undefined;
 
 array_push(global.game.player_list, self.id);

@@ -211,7 +211,7 @@
                     scale_y.smooth = 0.25;
                 
                     SetLabel(new GCLabel(), fa_middle, fa_right, 0, -16);
-                    label.SetContent(new GCCString("127.0.0.1"));
+                    label.SetContent(new GCCString("ip"));
                     label.SetAlign(fa_middle, fa_right);
                     label.SetFont(global.__font);
                     label.SetScale(0.75, 0.75, true);
@@ -230,6 +230,7 @@
                     
                     CustomStep = function(_delta_tick=1) {
                         other.client_ip = keyboard_string;
+                        label.content.content = other.client_ip;
                     }
                 
                     EventOpen = function() {
@@ -855,3 +856,6 @@ user_id = random_range(1, 10000);
 show_debug_message(user_id);
 
 player = -1;
+
+mouse_x_previous = mouse_x;
+mouse_y_previous = mouse_y;
