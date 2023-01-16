@@ -15,9 +15,11 @@ server = undefined;
 server_client_list = array_create(0, undefined);
 
 
-
-
 console_work = undefined;
 console_index = -1;
 console_log = array_create(0);
 console_history = array_create(0);
+
+
+global.game = instance_create_layer(0, 0, "GameForeground", OBJ_Game);
+game = global.game;
