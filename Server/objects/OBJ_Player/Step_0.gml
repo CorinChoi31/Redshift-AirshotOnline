@@ -44,7 +44,7 @@ if(unit.dead) {
     }
 }
 else {
-    if(unit.frame.durability < 0) {
+    if(unit.frame.durability <= 0) {
         unit.frame.durability = 0;
         
         unit.dead = true;
