@@ -1,3 +1,4 @@
-unit = undefined;
+game = noone;
 
-array_push(global.game.player_list, self.id);
+unit = undefined;
+input = new Input();

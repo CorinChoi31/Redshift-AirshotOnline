@@ -1,7 +1,7 @@
 var _delta_time = global.__time;
 
 if(unit.player == -1) {
-    unit.input = new Input(
+    input = new Input(
         mouse_x, mouse_y,
         keyboard_check(ord("W")), keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(ord("D")),
         mouse_check_button(mb_left),
@@ -9,7 +9,7 @@ if(unit.player == -1) {
     );
 }
 
-var _input = unit.input;
+var _input = input;
 
 var _move_vectical = - _input.move_up + _input.move_down;
 var _move_horizental = - _input.move_left + _input.move_right;
@@ -25,12 +25,30 @@ var _reload = _input.reload;
 
 
 if(unit.dead) {
+    if(unit.frame.durability < 0) {
+        unit.frame.durability = 0;
+    }
+    
     unit.engine.moveable = false;
     unit.weapon.fireable = false;
+    
+    if(unit.respawn > 0) {
+        unit.respawn -= _delta_time;
+    }
+    else {
+        unit.frame.durability = unit.frame.durability_max;
+        
+        unit.engine.moveable = true;
+        unit.weapon.fireable = true;
+        unit.dead = false;
+    }
 }
 else {
     if(unit.frame.durability < 0) {
+        unit.frame.durability = 0;
+        
         unit.dead = true;
+        unit.respawn = 4;
     }
 }
 
@@ -108,10 +126,11 @@ if(unit.weapon.fireable) {
             repeat(min(unit.weapon.amount)) {
                 
                 var _instance = instance_create_layer(x, y, "Game", unit.weapon.projectile.object);
+                    _instance.game = game;
                     _instance.projectile = new Projectiles(
                         object_get_name(unit.weapon.projectile.object),
                         unit.player,
-                        global.game.projectile_id++,
+                        game.projectile_id++,
                         x, y,
                         unit.weapon.projectile.damage,
                         unit.weapon.projectile.duration,
@@ -120,6 +139,7 @@ if(unit.weapon.fireable) {
                         point_direction(x, y, _mouse_x, _mouse_y) + random_range(-unit.weapon.angle, unit.weapon.angle) * 0.5,
                         unit.weapon.projectile.particle
                     );
+                    array_push(game.projectile_list, _instance);
                 
                 unit.weapon.magazine.amount -= 1;
                 if(unit.weapon.magazine.amount <= 0) {

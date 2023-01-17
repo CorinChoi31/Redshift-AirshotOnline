@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "OBJ_Player",
   "spriteId": {
-    "name": "SPR_Player",
-    "path": "sprites/SPR_Player/SPR_Player.yy",
+    "name": "SPR_Unit_Self",
+    "path": "sprites/SPR_Unit_Self/SPR_Unit_Self.yy",
   },
   "solid": false,
   "visible": true,
@@ -27,7 +27,7 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":1,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],

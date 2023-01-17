@@ -1,5 +1,6 @@
-network_set_config(network_config_connect_timeout, 5000);
-network_set_config(network_config_use_non_blocking_socket, true);
+menu = noone;
+game = instance_create_layer(0, 0, "Game", OBJ_Game);
+game.server = self.id;
 
 
 server_type = network_socket_tcp;
@@ -10,18 +11,8 @@ server_max_players = 4;
 server_log = array_create(0);
 server_packet = buffer_create(1024, buffer_grow, 1);
 
-server = undefined;
+server = network_create_server(server_type, server_port, server_max_clients);
 
 server_client_list = array_create(0, undefined);
 
 
-console_work = undefined;
-console_index = -1;
-console_log = array_create(0);
-console_history = array_create(0);
-
-
-global.game = instance_create_layer(0, 0, "GameForeground", OBJ_Game);
-game = global.game;
-
-keyboard_string = "server start";

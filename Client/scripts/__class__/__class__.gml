@@ -19,8 +19,38 @@ function Input(
     reload = _input_reload;
 }
 
-function Unit(
+function User(
+        _name
+    ) constructor {
+    
+    name = _name;
+    ready = false;
+    
+    unit = 0;
+    input = new Input();
+    
+    kill = 0;
+    death = 0;
+}
+
+function UnitData(
         _name,
+        _description,
+        _novel,
+        _subimg,
+        _unit
+    ) constructor {
+    
+    name = _name;
+    description = _description;
+    novel = _novel;
+    
+    subimg = _subimg;
+    
+    unit = _unit;
+}
+
+function Unit(
         _frame,
         _engine,
         _weapon
@@ -37,6 +67,7 @@ function Unit(
     weapon = _weapon;
     
     dead = false;
+    respawn = 0;
 }
 
 function Frame(
@@ -45,11 +76,6 @@ function Frame(
     
     durability_max = _durability_max;
     durability = _durability_max;
-    durability_prev = _durability_max;
-    
-    draw_durability_max = durability_max;
-    draw_durability = durability;
-    draw_durability_prev = durability_prev;
 }
 
 function Engine(
@@ -141,4 +167,6 @@ function Projectiles(_object, _player, _id, _x, _y, _damage, _duration, _duratio
     direction = _direction;
 
     particle = _particle;
+    
+    collied = false;
 }

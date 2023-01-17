@@ -1,1 +1,1 @@
-instance_create_layer(0, 0, "GameForeground", OBJ_Game);
+global.__menu = instance_create_layer(0, 0, "Menu", OBJ_Menu);

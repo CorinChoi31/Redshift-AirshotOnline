@@ -1,17 +1,6 @@
 var _delta_time = global.__time;
 
-if(game != noone) {
-    if(unit.player == game.player) {
-        unit.input = new Input(
-            mouse_x, mouse_y,
-            keyboard_check(ord("W")), keyboard_check(ord("A")), keyboard_check(ord("S")), keyboard_check(ord("D")),
-            mouse_check_button(mb_left),
-            keyboard_check(ord("R"))
-        );
-    }
-}
-
-var _input = unit.input;
+var _input = input;
 
 var _move_vectical = - _input.move_up + _input.move_down;
 var _move_horizental = - _input.move_left + _input.move_right;
@@ -25,15 +14,34 @@ var _fire_direction = point_direction(x, y, _mouse_x, _mouse_y);
 
 var _reload = _input.reload;
 
-
 if(unit.dead) {
+    if(unit.frame.durability < 0) {
+        unit.frame.durability = 0;
+    }
+    
     unit.engine.moveable = false;
     unit.weapon.fireable = false;
+    
+    if(unit.respawn > 0) {
+        unit.respawn -= _delta_time;
+    }
+    else {
+        unit.frame.durability = unit.frame.durability_max;
+        
+        unit.engine.moveable = true;
+        unit.weapon.fireable = true;
+        unit.dead = false;
+    }
 }
 else {
     if(unit.frame.durability < 0) {
+        unit.frame.durability = 0;
+        
         unit.dead = true;
+        unit.respawn = 8;
     }
+    
+    image_angle = unit.engine.angular_direction;
 }
 
 if(unit.weapon.magazine.reload) {
@@ -80,6 +88,16 @@ unit.y += lengthdir_y(unit.engine.linear_speed, unit.engine.angular_direction);
 
 x = unit.x;
 y = unit.y;
+
+part_emitter_region(global.particle_system, particle_emitter, x, x, y, y, ps_shape_ellipse, ps_distr_linear);
+if(game.client.player == unit.player) {
+    part_emitter_burst(global.particle_system, particle_emitter, 
+        global.particle[? "Unit.Move.Trail.Self"], ceil(unit.engine.linear_speed));
+}
+else {
+    part_emitter_burst(global.particle_system, particle_emitter, 
+        global.particle[? "Unit.Move.Trail.Enemy"], ceil(unit.engine.linear_speed));
+}
 
 if(unit.weapon.fireable) {
     if(_reload) {

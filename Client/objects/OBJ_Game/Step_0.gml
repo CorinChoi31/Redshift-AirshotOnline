@@ -1,65 +1,34 @@
-gui_System.Step();
+var _i = 0;
 
-switch(phase) {
+switch(stage) {
     default:
-    case gui_system.NONE:
-        phase_goto(gui_system.MENU_MAIN);
+        break;
+        
+    case GAME_STAGE.GAME_READY:
         break;
     
-    case gui_system.MENU_MAIN:
-        if(phase_tick == 0) {
-            gui_MenuTest.Open();
-        }
-        gui_MenuTest.Step();
-        
-        if(phase_next) {
-            if(phase_next_event) {
-                gui_MenuTest.Close();
+    case GAME_STAGE.GAME_START:
+        _i = 0;
+        repeat(array_length(player_list)) {
+            if(_i == client.player) {
+                interface.player = player_list[_i];
+                if(player_list[_i].unit.dead) {
+                    
+                }
+                else {
+                    camera.target = player_list[_i];
+                }
+                player_list[_i].sprite_index = SPR_Unit_Self;
+                player_list[_i].image_index = global.__unit[user_list[_i].unit].subimg;
             }
+            else {
+                player_list[_i].sprite_index = SPR_Unit_Enemy;
+                player_list[_i].image_index = global.__unit[user_list[_i].unit].subimg;
+            }
+            _i += 1;
         }
         break;
-        
-    case gui_system.MENU_SINGLEPLAYER:
-        if(keyboard_check_released(vk_escape)) {
-            phase_goto(gui_system.MENU_MAIN);
-        }
-        
-        if(phase_next) {
-            if(phase_next_event) {
-                gui_MenuMain.Close();
-            }
-        }
-        break;
-        
-    case gui_system.MENU_MULTIPLAYER:
-        if(phase_tick == 0) {
-            gui_MenuMultiplayer.Open();
-        }
-        gui_MenuMultiplayer.Step();
-        
-        if(phase_next) {
-            if(phase_next_event) {
-                gui_MenuMultiplayer.Close();
-            }
-        }
-        break;
+    
 }
 
-phase_tick += 1;
-
-if(phase_next) {
-    if(phase_next_tick == -1) {
-        phase_next_tick = phase_next_tick_max;
-    }
-    else {
-        phase_next_tick -= 1;
-        phase_next_event = false;
-        if(phase_next_tick <= 0) {
-            phase_next = false;
-            phase_next_tick = -1;
-            
-            phase = phase_next_target;
-            phase_tick = 0;
-        }
-    }
-}
+time += global.__time;

@@ -18,6 +18,7 @@
     {"id":{"name":"OBJ_System","path":"objects/OBJ_System/OBJ_System.yy",},"order":1,},
     {"id":{"name":"SPR_Player","path":"sprites/SPR_Player/SPR_Player.yy",},"order":0,},
     {"id":{"name":"OBJ_Game","path":"objects/OBJ_Game/OBJ_Game.yy",},"order":1,},
+    {"id":{"name":"OBJ_Menu","path":"objects/OBJ_Menu/OBJ_Menu.yy",},"order":2,},
     {"id":{"name":"ROM_Load","path":"rooms/ROM_Load/ROM_Load.yy",},"order":0,},
   ],
   "Options": [
@@ -42,7 +43,7 @@
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Objects.yy","order":1,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Game","folderPath":"folders/Objects/Game.yy","order":2,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Game","folderPath":"folders/Objects/Game.yy","order":3,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Projectile","folderPath":"folders/Objects/Game/Projectile.yy","order":4,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Rooms.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Scripts.yy","order":2,},
