@@ -1,4 +1,5 @@
 menu.client = noone;
+instance_destroy(game);
 
 buffer_seek(client_packet, buffer_seek_start, 0);
 buffer_write(client_packet, buffer_u8, NET_EVENT.DISCONNECT);

@@ -41,6 +41,20 @@ if(unit.dead) {
         unit.engine.moveable = true;
         unit.weapon.fireable = true;
         unit.dead = false;
+        
+        unit.weapon.cool = 0;
+        unit.weapon.period = 0;
+        unit.weapon.interval = 0;
+        unit.weapon.magazine.reload = false;
+        unit.weapon.magazine.reload_time = 0;
+        unit.weapon.magazine.amount = unit.weapon.magazine.amount_max;
+        
+        var _angle = random_range(0, 360);
+        var _r = random_range(0.25, 0.5);
+        unit.x = 2500 + lengthdir_x(game.range * _r, _angle);
+        unit.y = 2500 + lengthdir_y(game.range * random_range(0.25, 0.8), _angle);
+        
+        game.user_list[unit.player].input = new Input();
     }
 }
 else {
@@ -48,20 +62,27 @@ else {
         unit.frame.durability = 0;
         
         unit.dead = true;
-        unit.respawn = 4;
+        unit.respawn = 4 + game.user_list[unit.player].death * 1;
+        
+        game.user_list[unit.player].death += 1;
+        
+        unit.weapon.cool = 0;
+        unit.weapon.period = 0;
+        unit.weapon.interval = 0;
+        unit.weapon.magazine.reload = false;
     }
 }
 
 if(unit.weapon.magazine.reload) {
     if(unit.weapon.magazine.reload_time <= 0) {
         if(unit.weapon.magazine.reload_amount != -1) {
-            unit.weapon.magazine.amount += min(unit.weapon.magazine.amount_max, unit.weapon.magazine.amount + unit.weapon.magazine.reload_amount);
-            if(unit.weapon.magazine.amount == unit.weapon.magazine.amount_max) {
+            unit.weapon.magazine.amount = min(unit.weapon.magazine.amount_max, unit.weapon.magazine.amount + unit.weapon.magazine.reload_amount);
+            if(unit.weapon.magazine.amount >= unit.weapon.magazine.amount_max) {
                 unit.weapon.magazine.reload = false;
             }
         }
         else {
-            unit.weapon.magazine.amount = min(unit.weapon.magazine.amount_max, unit.weapon.magazine.amount + unit.weapon.magazine.amount_max);
+            unit.weapon.magazine.amount = unit.weapon.magazine.amount_max;
             unit.weapon.magazine.reload = false;
         }
         unit.weapon.magazine.reload_time += unit.weapon.magazine.reload_time_max;
@@ -100,7 +121,10 @@ y = unit.y;
 if(unit.weapon.fireable) {
     if(_reload) {
         if(unit.weapon.magazine.amount < unit.weapon.magazine.amount_max) {
-            unit.weapon.magazine.reload = true;
+            if(!unit.weapon.magazine.reload) {
+                unit.weapon.magazine.reload = true;
+                unit.weapon.magazine.reload_time = unit.weapon.magazine.reload_time_max;
+            }
         }
     }
     

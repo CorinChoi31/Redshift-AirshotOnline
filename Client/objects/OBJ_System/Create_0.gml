@@ -88,6 +88,33 @@ global.particle[? "Unit.Move.Trail.Enemy"] = part_type_create();
     part_type_speed(_particle, 0, 0, -0.0375, 0);
     part_type_direction(_particle, 0, 0, 0, 0);
     part_type_life(_particle, global.__frame * 0.2, global.__frame * 1);
+    
+global.particle[? "Unit.Move.Dead.Self"] = part_type_create();
+    _particle = global.particle[? "Unit.Move.Dead.Self"];
+    part_type_shape(_particle, pt_shape_square);
+    part_type_size(_particle, 0.1, 0.1, -0.001, 0);
+    part_type_scale(_particle, 1, 1);
+    part_type_orientation(_particle, 0, 0, 0, 0, true);
+    part_type_color3(_particle, c_red, c_blue, c_aqua);
+    part_type_alpha3(_particle, 1, 0.5, 0);
+    part_type_blend(_particle, true);
+    part_type_speed(_particle, 0, 5, -0.05, 0);
+    part_type_direction(_particle, 0, 360, 0, 0);
+    part_type_life(_particle, global.__frame * 1, global.__frame * 5);
+
+global.particle[? "Unit.Move.Dead.Enemy"] = part_type_create();
+    _particle = global.particle[? "Unit.Move.Dead.Enemy"];
+    part_type_shape(_particle, pt_shape_square);
+    part_type_size(_particle, 0.1, 0.1, -0.001, 0);
+    part_type_scale(_particle, 1, 1);
+    part_type_orientation(_particle, 0, 0, 0, 0, true);
+    part_type_color3(_particle, c_blue, c_red, c_orange);
+    part_type_alpha3(_particle, 1, 0.5, 0);
+    part_type_blend(_particle, true);
+    part_type_speed(_particle, 0, 5, -0.05, 0);
+    part_type_direction(_particle, 0, 360, 0, 0);
+    part_type_life(_particle, global.__frame * 1, global.__frame * 5);
+
 #endregion
 
 room_goto(ROM_Main);

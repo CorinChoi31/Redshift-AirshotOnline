@@ -5,9 +5,15 @@ switch(stage) {
         break;
         
     case GAME_STAGE.GAME_READY:
+        if(window_get_cursor() != cr_default) {
+            window_set_cursor(cr_default);
+        }
         break;
     
     case GAME_STAGE.GAME_START:
+        if(window_get_cursor() != cr_none) {
+            window_set_cursor(cr_none);
+        }
         _i = 0;
         repeat(array_length(player_list)) {
             if(_i == client.player) {
@@ -29,6 +35,11 @@ switch(stage) {
         }
         break;
     
+    case GAME_STAGE.GAME_END:
+        if(window_get_cursor() != cr_default) {
+            window_set_cursor(cr_default);
+        }
+        break;
 }
 
 time += global.__time;

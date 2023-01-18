@@ -45,12 +45,22 @@ switch(phase) {
         break;
     
     case gui_system.MENU_MULTIPLAYER_GAME:
-        if(room != ROM_Game) {
-            room_goto(ROM_Game);
+        if(phase_next) {
+            if(phase_next_event) {
+                room_goto(ROM_Main);
+            }
         }
-        if(keyboard_check(vk_shift)) {
-            if(keyboard_check_released(vk_escape)) {
-                instance_destroy(client);
+        else {
+            if(room != ROM_Game) {
+                room_goto(ROM_Game);
+            }
+            
+            if(keyboard_check(vk_shift)) {
+                if(keyboard_check_released(vk_escape)) {
+                    instance_destroy(client);
+                
+                    menu.phase_goto(gui_system.MENU_MULTIPLAYER);
+                }
             }
         }
         break;

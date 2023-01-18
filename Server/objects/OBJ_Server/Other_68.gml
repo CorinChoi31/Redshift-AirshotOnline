@@ -15,18 +15,34 @@ switch(_type) {
         break;
     case network_type_disconnect:
         _socket = async_load[? "socket"];
-        
-        _find = -1;
-        repeat(array_length(server_client_list)) {
-            if(_socket == server_client_list[_i].client_id) {
-                _find = _i;
-                break;
+        if(game.stage == GAME_STAGE.GAME_READY) {
+            _find = -1;
+            repeat(array_length(server_client_list)) {
+                if(_socket == server_client_list[_i].client_id) {
+                    _find = _i;
+                    break;
+                }
+                _i += 1;
             }
-            _i += 1;
+            if(_find != -1) {
+                network_destroy(server_client_list[_find].client_id);
+                array_delete(server_client_list, _i, 1);
+                array_delete(game.user_list, _i, 1);
+            }
         }
-        if(_find != -1) {
-            network_destroy(server_client_list[_find].client_id);
-            server_client_list[_find].client_id = undefined;
+        else {
+            _find = -1;
+            repeat(array_length(server_client_list)) {
+                if(_socket == server_client_list[_i].client_id) {
+                    _find = _i;
+                    break;
+                }
+                _i += 1;
+            }
+            if(_find != -1) {
+                network_destroy(server_client_list[_find].client_id);
+                server_client_list[_find].client_id = undefined;
+            }
         }
         break;
     case network_type_data:

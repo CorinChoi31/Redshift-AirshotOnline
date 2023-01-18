@@ -17,13 +17,15 @@ if(projectile.duration > 0) {
         _x = x + lengthdir_x(i, _pdir);
     	_y = y + lengthdir_y(i, _pdir);
         with(OBJ_Player) {
-            if(unit.player != other.projectile.player and point_in_circle(x, y, other.x, other.y, 24)) {
-                if(!array_any(_collision, function(_value, _index) {
-                        return _value == self.id;
-                    })
-                ) {
-                    array_push(_collision, self.id);
-                    break;
+            if(unit.player != other.projectile.player and !unit.dead) {
+                if(point_in_circle(x, y, other.x, other.y, 32)) {
+                    if(!array_any(_collision, function(_value, _index) {
+                            return _value == self.id;
+                        })
+                    ) {
+                        array_push(_collision, self.id);
+                        break;
+                    }
                 }
             }
         }
@@ -39,7 +41,12 @@ if(projectile.duration > 0) {
         
         _i = 0;
         repeat(_collied) {
-            _collision[_i].unit.frame.durability -= projectile.damage;
+            if(_collision[_i].unit.frame.durability > 0) {
+                _collision[_i].unit.frame.durability -= projectile.damage;
+                if(_collision[_i].unit.frame.durability <= 0) {
+                    game.user_list[projectile.player].kill += 1;
+                }
+            }
             _i += 1;
         }
     }

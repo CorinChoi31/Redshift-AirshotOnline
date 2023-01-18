@@ -68,6 +68,8 @@ switch(_type) {
                             break;
                     }
                     
+                    menu.phase_goto(gui_system.MENU_MULTIPLAYER);
+                    
                     instance_destroy(self);
                 }
                 break;
@@ -85,6 +87,7 @@ switch(_type) {
                 
                 game.stage = _game.stage;
                 game.time = _game.time;
+                game.range = _game.range;
                 
                 game.user_list = _game.users;
                 

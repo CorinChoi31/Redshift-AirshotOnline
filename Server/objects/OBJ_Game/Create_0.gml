@@ -4,6 +4,8 @@ server = noone;
 stage = GAME_STAGE.GAME_READY;
 time = -1;
 
+range = 3000;
+range_min = random_range(200, 400);
 
 user_list = [];
 
@@ -38,6 +40,7 @@ MakeSnapshot = function() {
         new Game(
             stage,
             time, 
+            range,
             _users,
             _players, 
             _projectiles

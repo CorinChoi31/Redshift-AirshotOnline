@@ -19,10 +19,10 @@ global.__unit[0] = new UnitData(
     1,
     new Unit(
         new Frame(180),
-        new Engine(4, 5, 180),
+        new Engine(4, 6, 180),
         new Weapon(
-            0.4, 1, 1, 0, 0,
-            new Projectile(OBJ_Bullet, 5, 3, 20),
+            0.3, 1, 1, 0, 0,
+            new Projectile(OBJ_Bullet, 8, 3, 30),
             new Magazine(10, 2)
         )
     )
@@ -34,11 +34,11 @@ global.__unit[1] = new UnitData(
     "",
     2,
     new Unit(
-        new Frame(160),
+        new Frame(140),
         new Engine(2, 4.5, 90),
         new Weapon(
-            0.6, 1, 1, 0, 0,
-            new Projectile(OBJ_Bullet, 15, 2, 25),
+            0.5, 1, 1, 0, 0,
+            new Projectile(OBJ_Bullet, 20, 2, 45),
             new Magazine(8, 2.5)
         )
     )
@@ -51,10 +51,10 @@ global.__unit[2] = new UnitData(
     3,
     new Unit(
         new Frame(160),
-        new Engine(8, 5.5, 180),
+        new Engine(8, 8, 180),
         new Weapon(
-            0.3, 1, 2, 0.25, 0,
-            new Projectile(OBJ_Bullet, 4, 5, 30),
+            0.2, 1, 2, 0.25, 0,
+            new Projectile(OBJ_Bullet, 5, 5, 35),
             new Magazine(6, 0.5)
         )
     )
@@ -66,11 +66,11 @@ global.__unit[3] = new UnitData(
     "",
     4,
     new Unit(
-        new Frame(100),
+        new Frame(120),
         new Engine(2, 4, 90),
         new Weapon(
             0.8, 1, 1, 0, 0,
-            new Projectile(OBJ_Bullet, 40, 5, 30),
+            new Projectile(OBJ_Bullet, 30, 5, 50),
             new Magazine(4, 2)
         )
     )
@@ -82,12 +82,12 @@ global.__unit[4] = new UnitData(
     "",
     5,
     new Unit(
-        new Frame(240),
+        new Frame(200),
         new Engine(3, 3, 120),
         new Weapon(
-            1, 8, 1, 0, 12,
-            new Projectile(OBJ_Bullet, 4, 1.25, 20),
-            new Magazine(24, 4)
+            0.85, 4, 2, 0.15, 12,
+            new Projectile(OBJ_Bullet, 5, 1, 25),
+            new Magazine(24, 0.2, 1)
         )
     )
 );
@@ -98,12 +98,12 @@ global.__unit[5] = new UnitData(
     "",
     6,
     new Unit(
-        new Frame(120),
+        new Frame(150),
         new Engine(6, 6, 240),
         new Weapon(
-            0.15, 1, 3, 0.1, 1,
-            new Projectile(OBJ_Bullet, 1, 1.5, 24),
-            new Magazine(15, 0.5)
+            0.1, 1, 3, 0.1, 1,
+            new Projectile(OBJ_Bullet, 3, 1.25, 30),
+            new Magazine(15, 0.8)
         )
     )
 );

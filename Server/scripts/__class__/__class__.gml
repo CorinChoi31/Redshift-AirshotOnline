@@ -192,9 +192,10 @@ function Projectiles(_object, _player, _id, _x, _y, _damage, _duration, _duratio
     collied = false;
 }
 
-function Game(_stage=-1, _time=0, _users=[], _players=[], _projectiles=[]) constructor {
+function Game(_stage=-1, _time=0, _range=0, _users=[], _players=[], _projectiles=[]) constructor {
     stage = _stage;
     time = _time;
+    range = _range;
     
     users = _users;
     players = _players;

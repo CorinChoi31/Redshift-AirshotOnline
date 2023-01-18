@@ -28,13 +28,15 @@ if(projectile.duration > 0) {
         }
         
         with(OBJ_Player) {
-            if(unit.player != other.projectile.player and point_in_circle(x, y, other.x, other.y, 24)) {
-                if(!array_any(_collision, function(_value, _index) {
-                        return _value == self.id;
-                    })
-                ) {
-                    array_push(_collision, self.id);
-                    break;
+            if(unit.player != other.projectile.player and !unit.dead) {
+                if(point_in_circle(x, y, other.x, other.y, 32)) {
+                    if(!array_any(_collision, function(_value, _index) {
+                            return _value == self.id;
+                        })
+                    ) {
+                        array_push(_collision, self.id);
+                        break;
+                    }
                 }
             }
         }
@@ -46,12 +48,7 @@ if(projectile.duration > 0) {
     var _collied = array_length(_collision);
     if(_collied > 0) {
         projectile.duration = 0;
-        
-        _i = 0;
-        repeat(_collied) {
-            _collision[_i].unit.frame.durability -= projectile.damage;
-            _i += 1;
-        }
+        projectile.collied = true;
     }
 
     x = projectile.x;

@@ -7,6 +7,15 @@ global.__time = global.__tick/global.__frame;
 
 global.tick = 0;
 global.time = 0;
+
+global.__screen_width = 1280;
+global.__screen_height = 720;
+
+global.screen_width = 1280;
+global.screen_height = 720;
+
+global.__camera = undefined;
+global.__camera_index = 0;
 #endregion
 
 #region
@@ -87,7 +96,7 @@ global.__unit[4] = new UnitData(
         new Weapon(
             1, 8, 1, 0, 10,
             new Projectile(OBJ_Bullet, 8, 1.25, 20),
-            new Magazine(24, 3)
+            new Magazine(24, 0.2, 1)
         )
     )
 );
