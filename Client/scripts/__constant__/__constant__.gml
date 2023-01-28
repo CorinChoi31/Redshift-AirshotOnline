@@ -18,3 +18,21 @@ enum GAME_STAGE {
     GAME_START = 1,
     GAME_END = 2,
 }
+
+enum GAME_PROJECTILE {
+    BULLET = 0,
+    SHELL = 1,
+    MISSILE = 1,
+}
+
+enum GAME_DAMAGE {
+    TRUE = 0,
+    PHYSICAL = 1,
+}
+
+enum GAME_EFFECT {
+    NONE = -1,
+    REPAIR_AUTO = 0,
+    REPAIR_INSTANT,
+    
+}

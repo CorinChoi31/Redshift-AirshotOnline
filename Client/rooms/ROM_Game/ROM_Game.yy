@@ -34,8 +34,8 @@
   "sequenceId": null,
   "roomSettings": {
     "inheritRoomSettings": false,
-    "Width": 5000,
-    "Height": 5000,
+    "Width": 20000,
+    "Height": 20000,
     "persistent": false,
   },
   "viewSettings": {
@@ -46,10 +46,10 @@
   },
   "physicsSettings": {
     "inheritPhysicsSettings": false,
-    "PhysicsWorld": false,
+    "PhysicsWorld": true,
     "PhysicsWorldGravityX": 0.0,
-    "PhysicsWorldGravityY": 10.0,
-    "PhysicsWorldPixToMetres": 0.1,
+    "PhysicsWorldGravityY": 0.0,
+    "PhysicsWorldPixToMetres": 0.01,
   },
   "parent": {
     "name": "Rooms",

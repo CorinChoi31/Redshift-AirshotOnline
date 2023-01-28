@@ -1,1 +1,0 @@
-draw_circle(2500, 2500, range, true);

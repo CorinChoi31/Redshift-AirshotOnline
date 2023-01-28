@@ -1,40 +1,37 @@
 var _i = 0;
 
-switch(stage) {
+switch(game.stage) {
     default:
-        break;
-        
+        break; 
     case GAME_STAGE.GAME_READY:
         if(window_get_cursor() != cr_default) {
             window_set_cursor(cr_default);
         }
         break;
-    
     case GAME_STAGE.GAME_START:
         if(window_get_cursor() != cr_none) {
             window_set_cursor(cr_none);
         }
         _i = 0;
-        repeat(array_length(player_list)) {
+        repeat(array_length(game.planes)) {
             if(_i == client.player) {
-                interface.player = player_list[_i];
-                if(player_list[_i].unit.dead) {
-                    
+                //interface.player = game.planes[_i];
+                if(game.planes[_i].plane.destroyed) {
+                    //game.planes[_i].plane.user_input = new UserInput();
                 }
                 else {
-                    camera.target = player_list[_i];
+                    camera.target = game.planes[_i];
                 }
-                player_list[_i].sprite_index = SPR_Unit_Self;
-                player_list[_i].image_index = global.__unit[user_list[_i].unit].subimg;
+                game.planes[_i].sprite_index = SPR_Plane_Self;
+                game.planes[_i].image_index = global.__plane[game.users[_i].status.plane_index].subimg;
             }
             else {
-                player_list[_i].sprite_index = SPR_Unit_Enemy;
-                player_list[_i].image_index = global.__unit[user_list[_i].unit].subimg;
+                game.planes[_i].sprite_index = SPR_Plane_Enemy;
+                game.planes[_i].image_index = global.__plane[game.users[_i].status.plane_index].subimg;
             }
             _i += 1;
         }
         break;
-    
     case GAME_STAGE.GAME_END:
         if(window_get_cursor() != cr_default) {
             window_set_cursor(cr_default);
@@ -42,4 +39,4 @@ switch(stage) {
         break;
 }
 
-time += global.__time;
+game.time += global.__time;

@@ -1,7 +1,11 @@
-instance_destroy(interface);
+//instance_destroy(interface);
 instance_destroy(camera);
 
-with(OBJ_Player) {
+with(OBJ_World) {
+    instance_destroy(world);
+}
+
+with(OBJ_Plane) {
     instance_destroy(self);
 }
 

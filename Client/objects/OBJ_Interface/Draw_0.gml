@@ -23,16 +23,16 @@ if(gpu_get_blendmode() != bm_normal) {
     gpu_set_blendmode(bm_normal);
 }
 
-if(game.stage == GAME_STAGE.GAME_START) {
+if(game.game.stage == GAME_STAGE.GAME_START) {
     _i = 0;
-    repeat(array_length(game.player_list)) {
-        _player = game.player_list[_i];
+    repeat(array_length(game.game.planes)) {
+        _player = game.game.planes[_i];
         
         if(_i != game.client.player) {
             draw_set_valign(fa_bottom);
-            draw_text_transformed(_player.x, _player.y - 24, string_ext("{0}", [game.user_list[_i].name]), 0.25, 0.25, 0);
+            draw_text_transformed(_player.x, _player.y - 24, string_ext("{0}", [game.game.users[_i].name]), 0.25, 0.25, 0);
             
-            if(_player.unit.dead) {
+            if(_player.plane.destroyed) {
                 
             }
             else {
@@ -41,7 +41,7 @@ if(game.stage == GAME_STAGE.GAME_START) {
                 _width = 48;
                 _height = 8;
                 _alpha = 0.75;
-                _value = median(0, _player.unit_durability_draw/_player.unit.frame.durability_max, 1);
+                _value = median(0, _player.plane.frame.durability/_player.plane.frame.durability_max, 1);
                 
                 _x1 = _x - _width * 0.5;
                 _y1 = _y - _height * 0.5;
@@ -55,6 +55,6 @@ if(game.stage == GAME_STAGE.GAME_START) {
         _i += 1;
     }
     
-    draw_ring_vertex(2500, 2500, 360, 90, game.range * 1.75, 20000, c_orange, c_red, 0, 1, 0, false);
-    draw_ring_vertex(2500, 2500, 360, 90, game.range * 2, game.range * 2 + 8, c_red, c_red, 1, 1, 0, false);
+    draw_ring_vertex(room_width * 0.5, room_height * 0.5, 360, game.game.world.angle, game.game.world.range * 2 + 32, game.game.world.range * 2, c_red, c_red, 1, 1, game.game.world.rotate, false);
 }
+

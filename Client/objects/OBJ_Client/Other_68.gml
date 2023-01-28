@@ -83,85 +83,10 @@ switch(_type) {
                 var _snapshot = buffer_read(_buffer, buffer_string);
                 _snapshot = json_parse(_snapshot);
                 
-                var _game = _snapshot.game;
-                
-                game.stage = _game.stage;
-                game.time = _game.time;
-                game.range = _game.range;
-                
-                game.user_list = _game.users;
+                //show_debug_message(_snapshot)
                 
                 if(room == ROM_Game) {
-                    var _copylist = [];
-                    var _player, _instance;
-                    array_copy(_copylist, 0, game.player_list, 0 , array_length(game.player_list));
-                
-                    _i = 0;
-                    repeat(array_length(_game.players)) {
-                        _player = _game.players[_i];
-                        _j = 0;
-                        repeat(array_length(_copylist)) {
-                            if(!instance_exists(_copylist[_j])) {
-                                array_delete(_copylist, _j, 1);
-                                continue;
-                            }
-                            if(_copylist[_j].unit.player == _player.player) {
-                                _copylist[_j].unit = _player;
-                                array_delete(_copylist, _j, 1);
-                                array_delete(_game.players, _i, 1);
-                                _j -= 1;
-                                _i -= 1;
-                                break;
-                            }
-                            _j += 1;
-                        }
-                        _i += 1;
-                    }
-                    _i = 0;
-                    repeat(array_length(_game.players)) {
-                        _player = _game.players[_i];
-                        _instance = instance_create_layer(_player.x, _player.y, "Game", OBJ_Player);
-                            _instance.game = game;
-                            _instance.unit = _player;
-                        array_push(game.player_list, _instance);
-                        _i += 1;
-                    }
-                
-                
-                    _copylist = []
-                    var _projectile;
-                    array_copy(_copylist, 0, game.projectile_list, 0 , array_length(game.projectile_list));
-                
-                    _i = 0;
-                    repeat(array_length(_game.projectiles)) {
-                        _projectile = _game.projectiles[_i];
-                        _j = 0;
-                        repeat(array_length(_copylist)) {
-                            if(!instance_exists(_copylist[_j])) {
-                                array_delete(_copylist, _j, 1);
-                                continue;
-                            }
-                            if(_copylist[_j].projectile.player == _projectile.player) {
-                                _copylist[_j].projectile = _projectile;
-                                array_delete(_copylist, _j, 1);
-                                array_delete(_game.projectiles, _i, 1);
-                                _j -= 1;
-                                _i -= 1;
-                                break;
-                            }
-                            _j += 1;
-                        }
-                        _i += 1;
-                    }
-                    _i = 0;
-                    repeat(array_length(_game.projectiles)) {
-                        _projectile = _game.projectiles[_i];
-                        _instance = instance_create_layer(_projectile.x, _projectile.y, "Game", asset_get_index(_projectile.object));
-                            _instance.game = game;
-                            _instance.projectile = _projectile;
-                        array_push(game.projectile_list, _instance);
-                        _i += 1;
-                    }
+                    game.game.Unpack(_snapshot);
                 }
                 break;
         }

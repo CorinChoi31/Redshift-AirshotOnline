@@ -15,7 +15,7 @@ switch(_type) {
         break;
     case network_type_disconnect:
         _socket = async_load[? "socket"];
-        if(game.stage == GAME_STAGE.GAME_READY) {
+        if(game.game.stage == GAME_STAGE.GAME_READY) {
             _find = -1;
             repeat(array_length(server_client_list)) {
                 if(_socket == server_client_list[_i].client_id) {
@@ -27,7 +27,7 @@ switch(_type) {
             if(_find != -1) {
                 network_destroy(server_client_list[_find].client_id);
                 array_delete(server_client_list, _i, 1);
-                array_delete(game.user_list, _i, 1);
+                array_delete(game.game.users, _i, 1);
             }
         }
         else {
@@ -78,9 +78,9 @@ switch(_type) {
                     
                 }
                 else if(_find == -1) {
-                    if(game.stage == GAME_STAGE.GAME_READY) {
+                    if(game.game.stage == GAME_STAGE.GAME_READY) {
                         array_push(server_client_list, new Client(_id, _ip, _user_id));
-                        array_push(game.user_list, new User(_user_id));
+                        array_push(game.game.users, new User(_user_id));
                         _find = array_length(server_client_list)-1;
                     }
                     else {
@@ -100,7 +100,7 @@ switch(_type) {
                 network_send_packet(_id, server_packet, buffer_tell(server_packet));
                 break;
             case NET_EVENT.DISCONNECT:
-                if(game.stage == GAME_STAGE.GAME_READY) {
+                if(game.game.stage == GAME_STAGE.GAME_READY) {
                     _find = -1;
                     _i = 0;
                     repeat(array_length(server_client_list)) {
@@ -113,7 +113,7 @@ switch(_type) {
                         _i += 1;
                     }
                     if(_find != -1) {
-                        array_delete(game.user_list, _find, 1);
+                        array_delete(game.game.users, _find, 1);
                     
                         buffer_seek(server_packet, buffer_seek_start, 0);
                         buffer_write(server_packet, buffer_u8, NET_EVENT.DISCONNECT);
@@ -133,7 +133,7 @@ switch(_type) {
                 var _input = buffer_read(_buffer, buffer_string);
                 
                 if(_player_index >= 0) {
-                    game.user_list[_player_index].input = json_parse(_input);
+                    game.game.users[_player_index].input.Unpack(json_parse(_input));
                 }
                 break;
         }

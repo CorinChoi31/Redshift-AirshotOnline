@@ -1,4 +1,3 @@
-menu.client = noone;
 instance_destroy(game);
 
 buffer_seek(client_packet, buffer_seek_start, 0);

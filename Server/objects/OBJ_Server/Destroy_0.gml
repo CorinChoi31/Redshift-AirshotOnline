@@ -1,5 +1,5 @@
 instance_destroy(game);
-with(OBJ_Player) {
+with(OBJ_Plane) {
     instance_destroy(self);
 }
 with(OBJ_Projectile) {

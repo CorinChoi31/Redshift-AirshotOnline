@@ -59,7 +59,7 @@ switch(phase) {
                 if(keyboard_check_released(vk_escape)) {
                     instance_destroy(client);
                 
-                    menu.phase_goto(gui_system.MENU_MULTIPLAYER);
+                    phase_goto(gui_system.MENU_MULTIPLAYER);
                 }
             }
         }
