@@ -42,6 +42,7 @@ switch(_type) {
             if(_find != -1) {
                 network_destroy(server_client_list[_find].client_id);
                 server_client_list[_find].client_id = undefined;
+                server_client_list[_find].update = -1;
             }
         }
         break;

@@ -7,4 +7,6 @@ projectile = new Projectile(-1, -1, -1, 0, 0, 2,
 );
 
 phy_bullet = true;
-phy_fixed_rotation = true;
+phy_fixed_rotation = true;  
+
+update = 1;

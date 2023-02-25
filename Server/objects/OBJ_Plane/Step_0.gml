@@ -1,6 +1,13 @@
 var _delta_time = global.__time;
 var _i = 0;
 
+if(update <= 0) {
+    update = user_input.update;
+    if(user_input.update > 0) {
+        user_input.update -= 1;
+    }
+}
+
 #region Effect
 plane_effect.Clear();
 
@@ -19,6 +26,8 @@ repeat(array_length(plane.effects)) {
     switch(_effect.index) {
         default:
         case GAME_EFFECT.NONE:
+            update = 1;
+            
             array_delete(plane.effects, _i, 1);
             _i -= 1;
             break;
@@ -116,6 +125,8 @@ repeat(array_length(plane.effects)) {
 #region Damage
 var _damage;
 repeat(array_length(plane.damages)) {
+    update = 1;
+    
     _damage = plane.damages[0];
     
     switch(_damage.type) {
@@ -134,6 +145,7 @@ repeat(array_length(plane.damages)) {
     }
     array_delete(plane.damages, 0, 1);
 }
+
 
 plane.frame.durability = median(0, plane.frame.durability, plane.frame.durability_max);
 #endregion
@@ -247,6 +259,11 @@ else {
         else {
             plane.engine.linear_speed = max(0, plane.engine.linear_speed - plane.engine.linear_speed_accel * _delta_time);
         }
+        
+        if(phy_speed > 0) {
+            update = 1;
+        }
+        
         plane.x = phy_position_x;
         plane.y = phy_position_y;
         
@@ -256,6 +273,7 @@ else {
                 if(plane.weapon.magazine.amount < plane.weapon.magazine.amount_max) {
                     if(plane.weapon.magazine.reload.reload_able) {
                         if(!plane.weapon.magazine.reload.reload_ing) {
+                            update = 1;
                             plane.weapon.magazine.reload.reload_ing = true;
                             plane.weapon.magazine.reload.cool = plane.weapon.magazine.reload.cool_max;
                         }
@@ -266,6 +284,7 @@ else {
                 if(plane.weapon.magazine.reload.reload_ing) {
                     if(plane.weapon.magazine.amount > 0) {
                         if(plane.weapon.magazine.reload.amount != -1) {
+                            update = 1;
                             plane.weapon.magazine.reload.reload_ing = false;
                             plane.weapon.magazine.reload.cool = 0;
                         }
@@ -273,6 +292,7 @@ else {
                 }
                 else {
                     if(plane.weapon.cool <= 0) {
+                        update = 1;
                         plane.weapon.cool += plane.weapon.cool_max;
                         plane.weapon.period = plane.weapon.period_max;
                     }
@@ -281,6 +301,7 @@ else {
     
             if(plane.weapon.period > 0) {
                 if(plane.weapon.interval <= 0) {
+                    update = 1;
                     plane.weapon.interval += plane.weapon.interval_max;
                     plane.weapon.period -= 1;
                     var _sensor = plane.weapon.projectile.sensor;
@@ -309,7 +330,7 @@ else {
                                 plane.x + _x, plane.y + _y,
                                 plane.weapon.projectile.collide_size,
                                 plane.weapon.projectile.collide_size_max,
-                                new ProjectileOnhit(plane.weapon.projectile.onhit.damage),
+                                new ProjectileOnhit(plane.weapon.projectile.onhit.type, plane.weapon.projectile.onhit.damage),
                                 new ProjectileForce(
                                     plane.weapon.projectile.force.duration_max,
                                     plane.weapon.projectile.force.linear_speed,

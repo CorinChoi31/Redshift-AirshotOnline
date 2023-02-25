@@ -45,7 +45,7 @@ switch(game.stage) {
                     game.time = -1;
                     
                     game.world = new GameWorld(1200, 
-                        choose(5, 6, 8, 10, 12, 15, 18, 20, 24, 30, 36, 45, 60, 72, 90, 180, 360),
+                        choose(5, 6, 8, 10, 12, 15, 18, 20, 24, 30, 36, 45, 60),
                         irandom_range(0, 360)
                     );
                 }
@@ -82,7 +82,7 @@ switch(game.stage) {
                         new PlaneEngine(_plane.engine.linear_speed_max, _plane.engine.linear_speed_accel, _plane.engine.angular_speed_ratio, _plane.engine.angular_speed_limit),
                         new PlaneWeapon(_plane.weapon.cool_max, _plane.weapon.amount, _plane.weapon.period_max, _plane.weapon.interval_max, _plane.weapon.dispersion_linear, _plane.weapon.dispersion_angular,
                             new PlaneWeaponProjectile(_plane.weapon.projectile.object, _plane.weapon.projectile.collide_size, _plane.weapon.projectile.collide_size_max,
-                                new PlaneWeaponProjectileOnhit(_plane.weapon.projectile.onhit.damage), 
+                                new PlaneWeaponProjectileOnhit(_plane.weapon.projectile.onhit.type, _plane.weapon.projectile.onhit.damage), 
                                 new PlaneWeaponProjectileForce(_plane.weapon.projectile.force.duration_max, _plane.weapon.projectile.force.linear_speed, _plane.weapon.projectile.force.linear_speed_max, _plane.weapon.projectile.force.linear_speed_accel, _plane.weapon.projectile.force.angular_speed_ratio, _plane.weapon.projectile.force.angular_speed_limit), 
                                 _sensor
                             ),
@@ -107,7 +107,11 @@ switch(game.stage) {
         else {
             _i = 0;
             repeat(array_length(game.users)) {
-                game.planes[_i].user_input = game.users[_i].input;
+                if(game.users[_i].input.update > 0) {
+                    game.planes[_i].user_input.Unpack(game.users[_i].input.Pack());
+                    
+                    game.users[_i].input.update -= 1;
+                }
                 _i += 1;
             }
         }

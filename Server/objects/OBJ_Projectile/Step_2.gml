@@ -5,3 +5,7 @@ if(projectile.force.duration < 0) {
 }
 
 projectile.force.duration -= _delta_time;
+
+if(update > 0) {
+    update -= 1;
+}

@@ -41,7 +41,7 @@ if(game.game.stage == GAME_STAGE.GAME_START) {
                 _width = 48;
                 _height = 8;
                 _alpha = 0.75;
-                _value = median(0, _player.plane.frame.durability/_player.plane.frame.durability_max, 1);
+                _value = median(0, _player.plane.frame.durability_draw/_player.plane.frame.durability_max, 1);
                 
                 _x1 = _x - _width * 0.5;
                 _y1 = _y - _height * 0.5;

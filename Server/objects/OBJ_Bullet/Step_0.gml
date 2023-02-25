@@ -37,6 +37,9 @@ if(projectile.force.duration > 0) {
         }
     }
     
+    projectile.force.linear_speed = phy_speed;
+    projectile.force.angular_direction = point_direction(phy_position_xprevious, phy_position_yprevious, phy_position_x, phy_position_y);
+    
     var _collied = array_length(_collision);
     if(_collied > 0) {
         projectile.collided = true;
@@ -45,9 +48,11 @@ if(projectile.force.duration > 0) {
         phy_speed_x = 0;
         phy_speed_y = 0;
         
+        update = 1;
+        
         _i = 0;
         repeat(_collied) {
-            array_push(_collision[_i].plane.damages, new Damage(projectile.player_index, GAME_DAMAGE.PHYSICAL, -projectile.onhit.damage));
+            _collision[_i].AddDamage(new Damage(projectile.player_index, projectile.onhit.type, -projectile.onhit.damage));
             _i += 1;
         }
     }

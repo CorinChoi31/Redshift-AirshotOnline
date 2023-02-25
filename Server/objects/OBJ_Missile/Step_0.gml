@@ -89,13 +89,15 @@ if(projectile.force.duration > 0) {
         phy_speed_x = 0;
         phy_speed_y = 0;
         
+        update = 1;
+        
         var _collision = [];
         with(OBJ_Plane) {
             if(!plane.destroyed) {
                 if(plane.frame.collide_able) {
                     if(plane.player_index != other.projectile.player_index) {
                         if(point_in_circle(plane.x, plane.y, other.projectile.x, other.projectile.y, plane.frame.collide_size + other.projectile.collide_size_max)) {
-                            array_push(plane.damages, new Damage(other.projectile.player_index, GAME_DAMAGE.PHYSICAL, -other.projectile.onhit.damage));
+                            array_push(plane.damages, new Damage(other.projectile.player_index, projectile.onhit.type, -other.projectile.onhit.damage));
                         }
                     }
                 }

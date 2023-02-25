@@ -1,0 +1,25 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Objects","order":1,"path":"folders/Objects.yy",},
+    {"name":"Game","order":3,"path":"folders/Objects/Game.yy",},
+    {"name":"Projectile","order":4,"path":"folders/Objects/Game/Projectile.yy",},
+    {"name":"Scripts","order":2,"path":"folders/Scripts.yy",},
+    {"name":"Sprites","order":3,"path":"folders/Sprites.yy",},
+    {"name":"Skill","order":5,"path":"folders/Objects/Game/Skill.yy",},
+    {"name":"Field","order":1,"path":"folders/Objects/Game/Skill/Field.yy",},
+    {"name":"Projectile","order":2,"path":"folders/Objects/Game/Skill/Projectile.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"ROM_Main","order":1,"path":"rooms/ROM_Main/ROM_Main.yy",},
+    {"name":"OBJ_Missile","order":2,"path":"objects/OBJ_Missile/OBJ_Missile.yy",},
+    {"name":"SPR_Projectile","order":1,"path":"sprites/SPR_Projectile/SPR_Projectile.yy",},
+    {"name":"OBJ_World","order":2,"path":"objects/OBJ_World/OBJ_World.yy",},
+    {"name":"OBJ_Plane","order":3,"path":"objects/OBJ_Plane/OBJ_Plane.yy",},
+    {"name":"ParticleSystem1","order":4,"path":"particles/ParticleSystem1/ParticleSystem1.yy",},
+    {"name":"__constant__","order":1,"path":"scripts/__constant__/__constant__.yy",},
+    {"name":"OBJ_Bullet","order":1,"path":"objects/OBJ_Bullet/OBJ_Bullet.yy",},
+    {"name":"OBJ_System","order":1,"path":"objects/OBJ_System/OBJ_System.yy",},
+    {"name":"OBJ_Game","order":1,"path":"objects/OBJ_Game/OBJ_Game.yy",},
+    {"name":"OBJ_Menu","order":2,"path":"objects/OBJ_Menu/OBJ_Menu.yy",},
+  ],
+}

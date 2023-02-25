@@ -6,6 +6,9 @@ if(target != noone) {
         if(target_mouse) {
             target_x += (mouse_x - target_x) * 0.125;
             target_y += (mouse_y - target_y) * 0.125;
+            
+            //target_width = 1280 + abs(mouse_x - target_x) * 0.5;
+            //target_height = 720 + abs(mouse_y - target_y) * 0.5;
         }
         
         target_x -= width/2;

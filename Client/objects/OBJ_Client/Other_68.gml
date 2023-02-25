@@ -83,10 +83,11 @@ switch(_type) {
                 var _snapshot = buffer_read(_buffer, buffer_string);
                 _snapshot = json_parse(_snapshot);
                 
-                //show_debug_message(_snapshot)
+                //show_debug_message(string_length(_snapshot));
+                //show_debug_message(_snapshot._);
                 
                 if(room == ROM_Game) {
-                    game.game.Unpack(_snapshot);
+                    game.game.Unpack(_snapshot._);
                 }
                 break;
         }

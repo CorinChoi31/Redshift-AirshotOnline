@@ -139,9 +139,9 @@ switch(game.game.stage) {
             draw_rectangle_vertex(_x1, _y1, _x + _width * _value, _y2, c_white, c_white, c_white, c_white, _alpha, _alpha, _alpha, _alpha, false);
             
             _alpha = 0.75;
-            _value = median(0, _player.plane.frame.durability/_player.plane.frame.durability_max, 1);
-            draw_rectangle_line_vertex(_x1, _y1, _x2, _y2, 4, c_aqua, c_aqua, c_blue, c_blue, _alpha, _alpha, _alpha * 0.5, _alpha * 0.5);
+            _value = median(0, _player.plane.frame.durability_draw/_player.plane.frame.durability_max, 1);
             draw_rectangle_vertex(_x1, _y1, _x + _width * _value, _y2, c_aqua, c_aqua, c_blue, c_blue, _alpha, _alpha, _alpha, _alpha, false);
+            draw_rectangle_line_vertex(_x1, _y1, _x2, _y2, -4, c_white, c_white, c_ltgray, c_ltgray, _alpha, _alpha, _alpha * 0.5, _alpha * 0.5);
             
             draw_set_valign(fa_bottom);
             draw_set_halign(fa_left);
@@ -152,7 +152,7 @@ switch(game.game.stage) {
             );
             draw_set_halign(fa_right);
             draw_text_transformed_color(_x + _width * _value - 4, _y2 - 4, 
-                round(_player.plane.frame.durability), 
+                round(_player.plane.frame.durability_draw), 
                 0.5, 0.5, 0,
                 c_white, c_white, c_white, c_white, _alpha * 1.5
             );
@@ -277,9 +277,9 @@ switch(game.game.stage) {
                 draw_text_transformed(_x + cursor_x, _y + cursor_y, "DEAD", 0.75, 0.75, 0);
             }
             else {
-                if(_player.plane.weapon.magazine.amount > 0) {
+                if(!_player.plane.weapon.magazine.reload.reload_ing) {
                     if(mouse_check_button(mb_left)) {
-                        cursor_range_target = 24
+                        cursor_range_target = 24;
                     }
                     else {
                         cursor_range_target = 48;
@@ -288,10 +288,10 @@ switch(game.game.stage) {
                     draw_text_transformed(_x + cursor_x, _y + cursor_y + cursor_range, floor(_player.plane.weapon.magazine.amount), 0.5, 0.5, 0);
                 }
                 else {
-                    cursor_range_target = 48;
+                    cursor_range_target = 72;
                     draw_text_transformed(_x + cursor_x, _y + cursor_y, "RELOAD", 0.75, 0.75, 0);
                     draw_set_valign(fa_top);
-                    draw_text_transformed(_x + cursor_x, _y + cursor_y + 4, string_format(_player.plane.weapon.magazine.reload.cool, 0, 1) + " sec", 0.5, 0.5, 0);
+                    draw_text_transformed(_x + cursor_x, _y + cursor_y + 4, string_format(max(0, _player.plane.weapon.magazine.reload.cool), 0, 1) + " sec", 0.5, 0.5, 0);
                 }
             }
             

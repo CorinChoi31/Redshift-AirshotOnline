@@ -10,6 +10,9 @@ collided = false;
 particle_emitter = part_emitter_create(global.particle_system);
 
 
+x_previous = phy_position_x;
+y_previous = phy_position_y;
+
 phy_bullet = true;
 phy_fixed_rotation = true;
 
