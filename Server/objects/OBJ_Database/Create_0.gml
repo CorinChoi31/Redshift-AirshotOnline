@@ -61,6 +61,11 @@ global.__passive[_i] = new InformationPassive(
     -1
 ); _i += 1;
 global.__passive[_i] = new InformationPassive(
+    "개조: 정", 
+    "탄창의 60% 를 사용하면 남은 탄창을 사용할 때 공격속도가 40% 증가하고 탄약의 피해량이 20% 상승합니다.", 
+    -1
+); _i += 1;
+global.__passive[_i] = new InformationPassive(
     "장착: 추격탄", 
     "기본 탄약을 4회 적중시키면, 가장 마지막으로 공격한 적에게 특수 탄환을 10회 발사합니다. 특수 탄환은 적중 시 기본 탄알 피해량의 5%의 피해를 입히고, 적의 최대 속력과 가속력을 8% 감소시킵니다.", 
     -1
@@ -79,7 +84,7 @@ global.__active = [];
 global.__active[_i] = new InformationActive("-", "기술을 선택하지 않았습니다.", -1, 0); _i += 1;
 global.__active[_i] = new InformationActive(
     "정지장", 
-    "1초 동안, 주위 모든 투사체의 속력을 급격하게 감소시킵니다. 범위는 기체의 탄약 지속시간과 속력에 비례합니다.", 
+    "1초 동안, 기체 주위 모든 투사체의 속력을 급격하게 감소시킵니다. 범위는 기체의 탄약 지속시간과 속력에 비례합니다.", 
     -1, 
     1
 ); _i += 1;
